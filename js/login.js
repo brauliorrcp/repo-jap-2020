@@ -4,3 +4,18 @@
 document.addEventListener("DOMContentLoaded", function(e){
 
 });
+
+function validateForm() {
+    var x = document.forms["login-form"]["usuario"].value;
+    if (x == "" || x == null) {
+      alert("Email must be filled out");
+      return false;
+    }
+
+    var y = document.forms["login-form"]["password"].value;
+    if (y == "" || y == null) {
+      alert("Password must be filled out");
+      return false;
+    }
+
+  }

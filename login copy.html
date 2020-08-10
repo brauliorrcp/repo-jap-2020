@@ -13,6 +13,7 @@
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <script src="js/login.js"></script>
   <style>
     html, body{
       height: 100%;
@@ -34,21 +35,30 @@
       padding: 15px;
       margin: auto;
     }
+
+    input {
+      display: block;
+      align: center;
+    }
+
+    form {
+      text-align: center;
+    }
+
+
   </style>
 </head>
 
 <body class="text-center">
-<div>
-<form>
+<div class="box">
+<form id="login-form" onsubmit="validateForm()">
 
-  <img src="e-mercado_logo.jpg" alt="e-mercado logo">
+  <img src="img/login.png" alt="e-mercado logo">
   <h1>Ingresa a tu cuenta</h1>
 
-  <label for="nombre">Usuario:</label>
-  <input type="text" required name="usuario" id="usuario" minlength="6" maxlength="10" placeholder="Usuario">
+  <input type="text" name="usuario" id="usuario" placeholder="Usuario" autofocus minlength="6" maxlength="10" >
 
-  <label for="nombre">Contraseña:</label>
-  <input type="password" required name="password" id="password" minlength="6" maxlength="10" placeholder="Contraseña">
+  <input type="password"  name="password" id="password" placeholder="Contraseña" minlength="6" maxlength="10">
 
   <label for="remember">Mantener la sesión iniciada</label>
   <input type="checkbox" name="remember" id="remember" >
