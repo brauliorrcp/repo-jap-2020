@@ -76,6 +76,10 @@
       font-size: small;
     }
 
+    #error {
+      color: red;
+    }
+
   </style>
 </head>
 
@@ -86,14 +90,16 @@
   <img src="img/login.png" alt="e-mercado logo">
   <h1>Ingresa a tu cuenta</h1>
 
-  <input type="text" name="usuario" id="usuario" placeholder="Usuario" autofocus minlength="6" maxlength="10" >
+  <p id="error"></p>
+  <input onblur="validate(this.value, this.name)" type="text" name="usuario" id="usuario" placeholder="Usuario" autofocus minlength="6" maxlength="10" >
 
-  <input type="password"  name="password" id="password" placeholder="Contraseña" minlength="6" maxlength="10">
+  
+  <input onblur="validate(this.value, this.name)" type="password"  name="password" id="password" placeholder="Contraseña" minlength="6" maxlength="10">
 
   <label for="remember">Mantener la sesión iniciada</label>
   <input type="checkbox" name="remember" id="remember" >
 
-  <button type="submit">Ingresar</button>
+  <button onclick= "inicioSesion()" type="submit">Ingresar</button>
   
   <p>JaP - 2020</p>
 
