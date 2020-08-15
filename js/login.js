@@ -29,8 +29,6 @@ function validate(value, name) {
 
   function inicioSesion() {
     if ( !validateForm() ) {
-      document.addEventListener('DOMContentLoaded', () => {
-        window.location = 'index.html'
-    })
+      loginredirect = true;
     }
   }
