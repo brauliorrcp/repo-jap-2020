@@ -81,17 +81,18 @@
     }
 
   </style>
+
 </head>
 
 <body class="text-center">
 <div class="box">
-<form id="login-form" onsubmit="validateForm()">
+<form id="login-form">
 
   <img src="img/login.png" alt="e-mercado logo">
   <h1>Ingresa a tu cuenta</h1>
 
   <p id="error"></p>
-  <input onblur="validate(this.value, this.name)" type="text" name="usuario" id="usuario" placeholder="Usuario" autofocus minlength="6" maxlength="10" >
+  <input onblur="validate(this.value, this.name)" type="text" name="usuario" id="usuario" placeholder="Usuario" minlength="6" maxlength="10" >
 
   
   <input onblur="validate(this.value, this.name)" type="password"  name="password" id="password" placeholder="Contraseña" minlength="6" maxlength="10">
@@ -99,7 +100,7 @@
   <label for="remember">Mantener la sesión iniciada</label>
   <input type="checkbox" name="remember" id="remember" >
 
-  <button type="submit">Ingresar</button>
+  <button type="submit" id="boton" onclick="validateForm(); redirect()">Ingresar</button>
   
   <p>JaP - 2020</p>
 
