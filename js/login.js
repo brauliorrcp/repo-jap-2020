@@ -11,31 +11,27 @@ function validateOnblur(value, name) {
     }
   }
 
-function validateU() {
+function validateForm() {
 
   var x = document.forms["login-form"]["usuario"].value;
-    if (x == "" || x == null) {
+    if (x == "") {
       document.getElementById("error").innerHTML = "Debe ingresar su usuario";
       return false;
     }
-  }
 
-  function validateP() {
     var x = document.forms["login-form"]["password"].value;
-    if (x == "" || x == null) {
+    if (x == "") {
       document.getElementById("error").innerHTML = "Debe ingresar su contraseña";
       return false;
     }
   }
 
-  function validateTodo() {
-    if(validateU()) {
-      return true;
-  }
-}
-
   function redirect() {
-    if(validateU && validateP) {
-      return window.location.href = "index1.html";
+    var x = document.forms["login-form"]["usuario"].value;
+    var y = document.forms["login-form"]["password"].value;
+
+    if((x !== "") && (y !== "")){
+      return location.href = "index1.html";
     }
   }
+
