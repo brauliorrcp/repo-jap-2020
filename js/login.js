@@ -26,12 +26,20 @@ function validateForm() {
     }
   }
 
+  miStorage = window.sessionStorage;
+
   function redirect() {
+
+    var usuario = document.getElementById("usuario").value; 
+    sessionStorage.setItem("usuario", usuario); 
+
     var x = document.forms["login-form"]["usuario"].value;
     var y = document.forms["login-form"]["password"].value;
 
     if((x !== "") && (y !== "")){
       return location.href = "index1.html";
     }
+
+
   }
 
