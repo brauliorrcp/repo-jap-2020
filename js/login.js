@@ -26,7 +26,7 @@ function validateForm() {
     }
   }
 
-  miStorage = window.sessionStorage;
+
 
   function redirect() {
 
