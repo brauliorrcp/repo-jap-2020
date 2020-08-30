@@ -13,33 +13,36 @@
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
-
+  
   <style>
-    .box {
-      background-color: skyblue;
+
+.box {
+      margin: 40%;
+      background-color: white;
+      border: 1px solid black;
       border-radius: 15px;
       box-sizing: border-box;
-      box-shadow: rgb(156, 170, 184) 7px 7px 0px 0px;
-      width: min-content;
+      box-shadow: rgb(156, 170, 184) 5px 5px 0px 0px;
+    }
+
+    #error {
+      color: red;
     }
 
     input {
       display: block;
       align-content: center;
     }
-
-    form {
-        text-align: center;
-    }
   </style>
 
 </head>
 
 <body class="text-center">
-<div class="container">
+<!--<div class="container">
     <div class="row">
-        <div class="box col-sm-7 text-center offset-md-3">
+        <div class=" d-flex justify-content-center box col-sm-7 text-center offset-md-3">
 
             <form id="login-form">
 
@@ -62,7 +65,50 @@
             
         </div>
     </div>
+</div>-->
+
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>Iniciar sesión</h3>
+      </div>
+      
+			<div class="card-body">
+
+        <p id="error"></p>
+
+				<form>
+
+					<div class="input-group form-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+						<input class="form-control" onblur="validateOnblur(this.value, this.name)" type="text" name="usuario" id="usuario" placeholder="Usuario" maxlength="10" >					
+          </div>
+          
+					<div class="input-group form-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+						<input class="form-control" onblur="validateOnblur(this.value, this.name)" type="password"  name="password" id="password" placeholder="Contraseña" maxlength="10">
+          </div>
+          
+					<div class="row align-items-center">
+                 <input type="checkbox" name="remember" id="remember" >Recordar datos
+          </div>
+          
+					<div class="form-group">
+						<button class="btn btn-primary" type="button" id="boton" onclick="validateForm(); redirect()">Ingresar</button>
+          </div>
+          
+				</form>
+      </div>
+      
+			<div class="card-footer">
+			  <p>JaP - 2020</p>
+			</div>
+		</div>
+	</div>
 </div>
+
+
 
 
   <script src="js/init.js"></script>
