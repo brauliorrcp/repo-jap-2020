@@ -63,7 +63,7 @@ function showCategoriesList(array){
         <div class="list-group-item list-group-item-action" onclick="desplegar(LIST_URL2)">
             <div class="row">
                 <div class="col-3">
-                <div>  `+ category.score + ` </div>
+                <div>  `+ category.score + `/5</div>
                     <div>  `+ category.user + ` </div> <small> ` + category.dateTime + ` </small> 
                 </div>
                 <div class="col">
