@@ -9,7 +9,7 @@ const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
 
 miStorage = window.sessionStorage;
 document.addEventListener("DOMContentLoaded", function(e){
-  document.getElementById("mostrarusuario").innerHTML = miStorage.getItem("usuario");
+  document.getElementById("usuario").innerHTML += miStorage.getItem("usuario");
 });
 
 var showSpinner = function(){
@@ -50,3 +50,7 @@ var getJSONData = function(url){
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
 });
+
+function cerrarSesion() {
+  sessionStorage.clear();
+}

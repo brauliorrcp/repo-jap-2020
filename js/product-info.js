@@ -1,12 +1,53 @@
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function(e){
 
+//Cargo los JSON y ejecuto las funciones que me imprimen el html
+document.addEventListener("DOMContentLoaded", function(e){
+    getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
+        if (resultObj.status === "ok")
+        {
+            category = resultObj.data;
+            /*productInfoArray = resultObj.data;*/
+
+            let categoryNameHTML  = document.getElementById("categoryName");
+            let categoryDescriptionHTML = document.getElementById("categoryDescription");
+            let productCountHTML = document.getElementById("productCount");
+            let productCriteriaHTML = document.getElementById("productCriteria");
+            let productCurrencyHTML = document.getElementById("moneda");
+        
+            categoryNameHTML.innerHTML = category.name;
+            categoryDescriptionHTML.innerHTML = category.description;
+            productCountHTML.innerHTML = category.soldCount;
+            productCriteriaHTML.innerHTML = category.cost;
+            productCurrencyHTML.innerHTML = category.currency;
+
+            //Muestro las imagenes en forma de galería
+            showImagesGallery(category.images);
+        }
+    });
+
+    getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
+        if (resultObj.status === "ok")
+        {
+            categoriesArray = resultObj.data;
+            //Muestro las categorías ordenadas
+            showCategoriesList(categoriesArray);
+        }
+    });
+
+
+    getJSONData(PRODUCTS_URL).then(function(resultObj){
+        if (resultObj.status === "ok")
+        {
+            productsArray = resultObj.data;
+            showRelatedList(productsArray);
+        }
+    });
 });
 
 
-var category = {};
+
 
 function showImagesGallery(array){
 
@@ -27,30 +68,6 @@ function showImagesGallery(array){
     }
 }
 
-document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
-        if (resultObj.status === "ok")
-        {
-            category = resultObj.data;
-
-            let categoryNameHTML  = document.getElementById("categoryName");
-            let categoryDescriptionHTML = document.getElementById("categoryDescription");
-            let productCountHTML = document.getElementById("productCount");
-            let productCriteriaHTML = document.getElementById("productCriteria");
-            let productCurrencyHTML = document.getElementById("moneda");
-        
-            categoryNameHTML.innerHTML = category.name;
-            categoryDescriptionHTML.innerHTML = category.description;
-            productCountHTML.innerHTML = category.soldCount;
-            productCriteriaHTML.innerHTML = category.cost;
-            productCurrencyHTML.innerHTML = category.currency;
-
-            //Muestro las imagenes en forma de galería
-            showImagesGallery(category.images);
-        }
-    });
-});
-
 var categoriesArray = [];
 
 function showCategoriesList(array){
@@ -63,7 +80,7 @@ function showCategoriesList(array){
         <div class="list-group-item list-group-item-action" onclick="desplegar(LIST_URL2)">
             <div class="row">
                 <div class="col-3">
-                <div>  `+ category.score + `/5</div>
+                <div style="font-weight: bold;">  `+ category.score + `/5</div>
                     <div>  `+ category.user + ` </div> <small> ` + category.dateTime + ` </small> 
                 </div>
                 <div class="col">
@@ -81,21 +98,49 @@ function showCategoriesList(array){
    
 }
 
-
-
-document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
-        if (resultObj.status === "ok")
-        {
-            categoriesArray = resultObj.data;
-            //Muestro las categorías ordenadas
-            showCategoriesList(categoriesArray);
-        }
-    });
-});
+var productsArray = [];
 
 
 
+function showRelatedList(array){
+    
+    let relacionado1 = productsArray[1];
+    let relacionado2 = productsArray[3];
+    let htmlContentToAppend = "";
+
+        htmlContentToAppend += `
+        <div class="card" style="width: 18rem; display: inline-block;">
+            <img class="card-img-top" src="` + relacionado1.imgSrc + `" alt="` + relacionado1.description + `">
+            <div class="card-body">
+                <h5 class="card-title">`+ relacionado1.name +`</h5>
+                <small class="text-muted">` + relacionado1.currency + " " + relacionado1.cost + ` </small>
+                <p class="card-text">` + relacionado1.description + `</p>
+                <a href="product-info.html" class="btn btn-primary">Ver producto</a>
+            </div>
+        </div>
+        `
+
+        htmlContentToAppend += `
+        <div class="card" style="width: 18rem; display: inline-block;">
+            <img class="card-img-top" src="` + relacionado2.imgSrc + `" alt="` + relacionado2.description + `">
+            <div class="card-body">
+                <h5 class="card-title">`+ relacionado2.name +`</h5>
+                <small class="text-muted">` + relacionado2.currency + " " + relacionado2.cost + ` </small>
+                <p class="card-text">` + relacionado2.description + `</p>
+                <a href="product-info.html" class="btn btn-primary">Ver producto</a>
+            </div>
+        </div>
+        `
+
+        document.getElementById("carrusel").innerHTML = htmlContentToAppend;
+   
+}
+
+
+
+
+
+// Validación de comentario y valoración con estrellas
 function validateComment() {
 
 
@@ -134,8 +179,8 @@ function validarMensaje() {
 
     if(validateComment() && validateStars()) {
         document.getElementById("mensajeCorrecto").innerHTML = "Su mensaje se envió correctamente"; 
+
     } else {
         document.getElementById("mensajeCorrecto").innerHTML = ""; 
     }}
-
 
