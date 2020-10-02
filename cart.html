@@ -59,13 +59,35 @@
     </div>
   </nav>
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 11/10/2020) y Entrega 6 (Fecha de entrega: 25/10/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+    <p id="prodselec">
+
+    </p>
+
+    <div>
+      Precio total: <span id="total"></span>
     </div>
+
   </div>
+
+<div class="container p-5">
+  <form action="">
+    <h5>Método de envío</h5>
+    <input type="text" placeholder="Dirección">
+    <input type="text" placeholder="País">
+
+    <h6>Tipo de envío</h6>
+    <label for="premium">Premium (2-5 días)</label>
+    <input type="checkbox" name="premium">
+
+    <label for="express">Express (5-8 días)</label>
+    <input type="checkbox" name="express">
+
+    <label for="standard">Standard (12-15 días)</label>
+    <input type="checkbox" name="standard">
+</form>
+
+</div>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
