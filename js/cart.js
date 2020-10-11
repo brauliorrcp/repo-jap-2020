@@ -28,7 +28,7 @@ function showCartProduct(array) {
     
 
     htmlContentToAppend += `
-
+        
     <div class="list-group-item list-group-item-action">
     <div class="row">
         <div class="col-3">
@@ -40,9 +40,9 @@ function showCartProduct(array) {
                 <small class="text-muted">` + product.currency + " " + product.unitCost + ` </small>
             </div>
             <label>Cantidad</label>
-            <input onchange="precioTotal()" name="cantidad" type="number" value="` + product.count + `" min="1" max="1000" step="1"></input>
+            <input id="inputcant" onchange="precioTotal()" name="cantidad" type="number" value="` + product.count + `" min="1" max="1000" step="1"></input>
 
-            <div class="">` + product.count + " " + "x" + " " + product.currency +` <span name="costounit"> `+ product.unitCost + `</span> </div> 
+            <div style="display:none;" class=""> `+ product.count + " " + "x" + " " + product.currency +` <span name="costounit"> `+ product.unitCost + `</span> </div> 
         </div>
         
     </div>
