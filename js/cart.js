@@ -73,6 +73,9 @@ function precioTotal() {
     document.getElementById("express").checked = false;
     document.getElementById("standard").checked = false;
 
+    document.getElementById("totalfinal").innerHTML = "";
+    document.getElementById("totalenvio").innerHTML = "";
+
 
 }
 
