@@ -76,9 +76,7 @@
     </p>
   
     <br>
-    <div style="font-weight: bold;">
-      Subtotal: UYU <span id="total"></span>
-    </div>
+
 
   </div>
 
@@ -86,26 +84,32 @@
   <div class="row">
 
     <div class="col">
-      <form action="">
+      <form id="envioform" action="">
         <h5>Método de envío</h5>
         <br><br>
-        <input type="text" placeholder="Dirección">
+        <input class="metenv" id="direccion" type="text" placeholder="Dirección">
+        <p id="errordir" style="color: red;"></p>
         <br><br>
-        <input type="text" placeholder="País">
+        <input id="pais" type="text" placeholder="País">
+        <p id="errorpais" style="color: red;"></p>
         <br><br>
 
         <h6>Tipo de envío</h6>
-        <input type="radio" name="envio">
+        <input class="metenv" id="premium" type="radio" name="envio" value = "0.15" onclick="precioFinal(this.value)">
         <label for="premium">Premium (2-5 días) <i class="fa fa-clock-o" style="font-size:larger;color:green"></i></label>
         <br>
 
-        <input type="radio" name="envio">
+        <input class="metenv" id="express" type="radio" name="envio" value="0.07" onclick="precioFinal(this.value)">
         <label for="express">Express (5-8 días) <i class="fa fa-clock-o" style="font-size:larger;color:yellow"></i></label>
         <br>
     
-       <input type="radio" name="envio">
+       <input id="standard" type="radio" name="envio" value="0.05" onclick="precioFinal(this.value)">
        <label for="standard">Standard (12-15 días) <i class="fa fa-clock-o" style="font-size:larger;color:red"></i></label>
+
+       <p id="errormetodo" style="color: red;"></p>
       </form>
+
+
     </div>
 
     <div class="col">
@@ -132,17 +136,108 @@
 
     <!--Cuando se selecciona uno de estos se despliega un modal para el pago -->
 
-    <input type="radio" name="pago">
-    <label for="card">Tarjeta de crédito <i class="fa fa-credit-card" style="font-size:larger;color:blue"></i></label>
+    <input id="tarjeta" type="radio" name="pago" data-toggle="modal" data-target="#exampleModal1">
+    <label for="card">Tarjeta de crédito <i class="fa fa-credit-card" style="font-size:larger;color:blue"></i></label> <span id="seleccionado" style="display: none;">Seleccionado</span>
+    
+    <div id="datostarjtodos">
+      <p class="col" id="datostarj1"></p>
+      <p class="col" id="datostarj2"></p>
+      <p class="col" id="datostarj3"></p>
+      <p class="col" id="datostarj4"></p>
+    </div>
     <br>
 
-    <input type="radio" name="pago">
-    <label for="banco">Transferencia bancaria <i class="fa fa-bank" style="font-size:larger;color:grey"></i></label>
+    <input id="banco" type="radio" name="pago" data-toggle="modal" data-target="#exampleModal2">
+    <label for="banco">Transferencia bancaria <i class="fa fa-bank" style="font-size:larger;color:grey"></i></label> 
+    
+    <div>
+      <p class="col" id="datostarj5"></p>
+      <p class="col" id="datostarj6"></p>
+      <p class="col" id="datostarj7"></p>
+      <p class="col" id="datostarj8"></p>
+    </div>
     <br>
+
+    <p id="errorpago" style="color: red;"></p>
   </form>
+
+
+  <!-- Modal tarjeta -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">Datos de la tarjeta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input id="nombretarj" type="text" placeholder="Nombre">
+        <input id="apetarj" type="text" placeholder="Apellido">
+        <input id="numtarj" type="text" placeholder="Número de tarjeta">
+        <input id="codtarj" type="text" placeholder="Código de seguridad">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button onclick="datosTarjeta()" id="guardartarjeta" type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
 </div>
 
-<button class="btn btn-success mb-5" type="button">Confirmar</button>
+        <!-- Modal transferencia -->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Datos del banco</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <input id="nombank" type="text" placeholder="Nombre">
+                <input id="apebank" type="text" placeholder="Apellido">
+                <input id="numbank" type="text" placeholder="Número de tarjeta">
+                <input id="codbank" type="text" placeholder="Código de seguridad">
+              </div>
+              <div class="modal-footer">
+                <button  type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button onclick="datosBanco()" id="guardarbanco" type="button" class="btn btn-primary">Guardar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+</div>
+
+<div class="border border-secondary shadow p-3 mb-5 bg-white rounded mt-5">
+<h5>Detalle</h5>
+
+<div class="row">
+<div class="col">
+  Subtotal: UYU <span id="total" style="font-weight: bold;"></span>
+  <br>
+  Coso de envío: UYU <span id="totalenvio" style="font-weight: bold;"></span>
+  <br>
+  Total: UYU <span id="totalfinal" style="font-weight: bold;"></span>
+</div>
+
+  <div class="col">
+
+    <small class="card border-danger text-danger mb-3 p-2" style="text-align:center; display:block;">
+      Verifique que toda la información es correcta antes de confirmar la compra.
+    </small>
+  </div>
+
+</div>
+
+</div>
+<br>
+
+
+<button id="botonenviar" onclick="validarTodo()" class="btn btn-success mb-5" type="button">Confirmar</button>
 
 
   <div id="spinner-wrapper">
