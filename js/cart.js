@@ -170,10 +170,10 @@ function datosBanco() {
     document.getElementById("datostarj6").innerHTML = "Apellido: " + apellido;
 
     let numero = $("#exampleModal2 #numbank").val().trim()
-    document.getElementById("datostarj7").innerHTML = "Número de cuenta: " + numero;
+    document.getElementById("datostarj7").innerHTML = "Nombre del banco: " + numero;
 
     let codigo = $("#exampleModal2 #codbank").val().trim()
-    document.getElementById("datostarj8").innerHTML = "Contraseña: " + codigo;
+    document.getElementById("datostarj8").innerHTML = "Número de cuenta: " + codigo;
 
     $('#exampleModal2').modal('hide')
 }
