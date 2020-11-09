@@ -60,16 +60,18 @@
   </nav>
 
   <div class="text-center p-4">
-    <h2>Perfil</h2>
+    <h2 id="nombredeperfil"></h2>
     <p class="lead">Aquí podrás ver y modificar todos tus datos.</p>
 </div>
 
 <div class="container">
-  <h5>Datos del usuario</h5>
+  <div class="card shadow p-3 mb-5 bg-white rounded mt-5">
+  <h5 class = "mb-3">Datos del usuario</h5>
   <p>Nombre y apellidos: <span id="mostrarnombre"></span> </p>
   <p>Edad: <span id="mostraredad"></span></p>
   <p>E-mail: <span id="mostrarmail"></span></p>
   <p>Teléfono de contacto: <span id="mostrartel"></span></p>
+</div>
 </div>
 
   <div class="container">
@@ -77,13 +79,15 @@
    <div class="card shadow p-3 mb-5 bg-white rounded mt-5">
     <h5>Modifica tus datos</h5>
     <input class="m-1" id="nomyap" type="text" placeholder="Nombres y apellidos">
-    <input class="m-1" id="edad" type="text" placeholder="Edad">
+    <input class="m-1" id="edad" type="number" placeholder="Edad">
     <input class="m-1" id="email" type="text" placeholder="E-mail">
-    <input class="m-1" id="tel" type="text" placeholder="Teléfono de contacto">
+    <input class="m-1" id="tel" type="number" placeholder="Teléfono de contacto">
+
+    <p id="errorperfil" style="color: red;"></p>
 
     <div class="col mt-3">
-    <button class="btn btn-primary" type="button" onclick="datosPerfil()">Guardar datos</button>
-    <button class="btn btn-danger" type="button" onclick="borrarDatos()">Borrar datos</button>
+    <button class="btn btn-primary" type="button" onclick="datosPerfil2()">Guardar datos</button>
+    <button class="btn btn-danger" type="button" onclick="borrarDatos()">Borrar datos actuales</button>
     </div>
   </div>
  
